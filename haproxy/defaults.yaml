@@ -6,7 +6,7 @@ Debian:
     name: haproxy
   config:
     manage:
-      - default_file
+      - defaults_file
       - haproxy
     defaults_file:
       path: /etc/default/haproxy
