@@ -1,0 +1,14 @@
+{%- from "haproxy/defaults.yaml" import rawmap with context %}
+{%- set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('haproxy:lookup') %}
+# Defaults file for HAProxy
+#
+# MANAGED BY SALTSTACK
+#
+# This is sourced by both, the initscript and the systemd unit file, so do not
+# treat it as a shell script fragment.
+
+# Change the config file location if needed
+CONFIG={{ datamap.config.haproxy_defaults.config|defaults('"/etc/haproxy/haproxy.cfg"') }}
+
+# Add extra flags here, see haproxy(1) for a few options
+EXTRAOPTS={{ datamap.config.haproxy_defaults.extraopts|defaults('""') }}
