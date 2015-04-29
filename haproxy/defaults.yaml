@@ -1,0 +1,14 @@
+{% load_yaml as rawmap %}
+Debian:
+  pkgs:
+    - haproxy
+  service:
+    name: haproxy
+  config:
+    manage:
+      - default_file
+      - haproxy
+    defaults_file:
+      path: /etc/default/haproxy
+    haproxy:
+      path: /etc/haproxy/haproxy.cfg
