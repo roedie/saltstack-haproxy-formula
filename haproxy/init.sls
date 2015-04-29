@@ -21,11 +21,11 @@ defaults_file:
   file:
     - managed
     - name: {{ datamap.config.defaults_file.path }}
-    - source: {{ datamap.config.default_file.template_path|default('haproxy/files/haproxy_default') }}
-    - template: {{ datmap.config.default_file.template_renderer|default('jinja') }}
-    - mode: {{ datamap.config.default_file.mode|default('640') }}
-    - owner: {{ datamap.config.default_file.owner|default('root') }}
-    - group: {{ datamap.config.default_file.group|default)'root') }}
+    - source: {{ datamap.config.defaults_file.template_path|default('haproxy/files/haproxy_defaults') }}
+    - template: {{ datmap.config.defaults_file.template_renderer|default('jinja') }}
+    - mode: {{ datamap.config.defaults_file.mode|default('640') }}
+    - owner: {{ datamap.config.defaults_file.owner|default('root') }}
+    - group: {{ datamap.config.defaults_file.group|default)'root') }}
 {% endif %}
 
 {% if haproxy in datamap.config.manage %}
