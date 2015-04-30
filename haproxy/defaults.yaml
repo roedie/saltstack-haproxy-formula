@@ -7,8 +7,9 @@ Debian:
   config:
     manage:
       - defaults_file
-      - haproxy
+      - haproxy_cfg
     defaults_file:
       path: /etc/default/haproxy
-    haproxy:
+    haproxy_cfg:
       path: /etc/haproxy/haproxy.cfg
+{% endload %}
