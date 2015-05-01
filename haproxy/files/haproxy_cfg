@@ -1,0 +1,59 @@
+{%- from "haproxy/defaults.yaml" import rawmap with context %}
+{%- set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('haproxy:lookup')) %}
+# HAProxy Configuration File
+#
+# MANAGED BY SALTSTACK
+#
+
+###
+# Global
+###
+global
+{%- for g in salt['pillar.get']('haproxy:global') %}
+  {{ g }}
+{%- endfor %}
+
+###
+# defaults
+###
+defaults
+{%- for d in salt['pillar.get']('haproxy:defaults') %}
+  {{ d }}
+{%- endfor %}
+
+###
+# frontends
+###
+{%- if 'frontends' in salt['pillar.get']('haproxy') %}
+{%- for f in salt['pillar.get']('haproxy:frontends').iteritems() %}
+frontend {{ f[1].name }}
+  {%- for s in f[1].settings %}
+  {{ s }}
+  {%- endfor %}
+{% endfor %}
+{% endif %}
+
+###
+# backends
+###
+{%- if 'backends' in salt['pillar.get']('haproxy') %}
+{%- for b in salt['pillar.get']('haproxy:backends').iteritems() %}
+backend {{ b[1].name }}
+  {%- for s in b[1].settings %}
+  {{ s }}
+  {%- endfor %}
+{% endfor %}
+{% endif %}
+
+###
+# listen
+###
+{%- if 'listen' in salt['pillar.get']('haproxy') %}
+{%- for proxy in salt['pillar.get']('haproxy:listen') %}
+listen {{ proxy.name }}
+  {%- for s in proxy.settings %}
+  {{ s }}
+  {%- endfor %}
+{% endfor %}
+{% endif %}
+
