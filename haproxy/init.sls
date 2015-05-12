@@ -36,7 +36,7 @@ haproxy_cfg:
     - source: {{ datamap.config.haproxy_cfg.template_path|default('salt://haproxy/files/haproxy_cfg') }}
     - template: {{ datamap.config.haproxy_cfg.template_renderer|default('jinja') }}
     - mode: {{ datamap.config.haproxy_cfg.mode|default('640') }}
-    - owner: {{ datamap.config.haproxy_cfg.owner|default('root') }}
+    - user: {{ datamap.config.haproxy_cfg.owner|default('root') }}
     - group: {{ datamap.config.haproxy_cfg.group|default('root') }}
 {% endif %}
 
